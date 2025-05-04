@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>JavaScript UI Task Practice</title>
+  <style>
+    .highlight {
+      color: green;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h2 id="heading">JavaScript Tasks</h2>
+
+  
+  <h3>Choose your favorite fruit:</h3>
+  <label><input type="radio" name="fruit" value="Apple" /> Apple</label>
+  <label><input type="radio" name="fruit" value="Banana" /> Banana</label>
+  <label><input type="radio" name="fruit" value="Mango" /> Mango</label>
+
+
+  <h3>Select your hobbies:</h3>
+  <label><input type="checkbox" class="hobby" value="Reading" /> Reading</label>
+  <label><input type="checkbox" class="hobby" value="Sports" /> Sports</label>
+  <label><input type="checkbox" class="hobby" value="Music" /> Music</label>
+
+  
+  <br /><br />
+  <button onclick="displaySelected()">Submit</button>
+
+  
+  <p id="output"></p>
+
+  <script>
+    function displaySelected() {
+    
+      const selectedFruit = document.querySelector('input[name="fruit"]:checked');
+      const fruitValue = selectedFruit ? selectedFruit.value : "None";
+
+      const selectedHobbies = document.querySelectorAll('input.hobby:checked');
+      const hobbies = Array.from(selectedHobbies).map(cb => cb.value);
+
+      document.getElementById("output").innerHTML = `
+        Selected Fruit: <b>${fruitValue}</b><br/>
+        Selected Hobbies: <b>${hobbies.join(", ") || "None"}</b>
+      `;
+
+      
+
+    
+      const heading = document.getElementById("heading");
+      heading.innerHTML = "JavaScript UI Task - Updated";
+
+      
+      const firstCheckbox = document.querySelector(".hobby");
+      firstCheckbox.style.border = "2px solid blue";
+
+    
+      const allCheckboxes = document.querySelectorAll(".hobby");
+      allCheckboxes.forEach(cb => {
+        cb.parentElement.classList.add("highlight");
+      });
+
+      
+      console.log("Selected Fruit:", fruitValue);
+      console.log("Selected Hobbies:", hobbies);
+    }
+  </script>
+</body>
+</html>
